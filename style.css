@@ -1,26 +1,24 @@
 .parent {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto auto 70vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
     grid-template-areas:
-            "header header header header"
-            "item1 item2 item3 item4"
-            "item5 item5 item5 item5"
+            "header header header header header"
+            "item1 item2 item3 item4 item5"
 }
 
 .item0 {
-    grid-column: 1/ span 4;
     grid-area: header;
 
-    border: 5px groove darkcyan;
+    border: 5px groove violet;
+    text-align: center;
     padding: 10px;
 }
 
 .item1 {
-    grid-column: 1;
     grid-area: item1;
 
-    border: 5px groove darkcyan;
+    border: 5px groove violet;
     text-align: center;
     padding: 10px;
 }
@@ -29,7 +27,7 @@
     grid-column: 2;
     grid-area: item2;
 
-    border: 5px groove darkcyan;
+    border: 5px groove violet;
     text-align: center;
     padding: 10px;
 }
@@ -38,35 +36,33 @@
     grid-column: 3;
     grid-area: item3;
 
-    border: 5px groove darkcyan;
+    border: 5px groove violet;
     text-align: center;
     padding: 10px;
 }
 
 .item4 {
-    grid-column: 4;
     grid-area: item4;
 
-    border: 5px groove darkcyan;
+    border: 5px groove violet;
     text-align: center;
     padding: 10px;
 }
 
 .item5 {
-    grid-column: 1 / span 2;
     grid-area: item5;
 
-    border: 5px groove darkcyan;
+    border: 5px groove violet;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 9300px) {
     .parent {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto auto 70vh;
+        grid-template-rows: auto auto auto;
         grid-template-areas:
                 "header header"
                 "item1 item2"
@@ -75,11 +71,11 @@
     }
 }
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 550px) {
     .parent {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto auto 70vh;
+        grid-template-rows: auto auto auto auto auto auto;
         grid-template-areas:
                 "header"
                 "item1"
@@ -87,9 +83,5 @@
                 "item3"
                 "item4"
                 "item5"
-    }
-
-    .item0, .item1, .item2, .item3, .item4 {
-        padding: 0;
     }
 }
