@@ -43,3 +43,17 @@
     grid-area: item5;
     border: 5px groove violet;
 }
+
+
+@media screen and (max-width: 550px) {
+    .parent {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 20vh 10vh 10vh 60vh;
+        grid-template-areas:
+                "header header"
+                "item1 item2"
+                "item3 item4"
+                "item5 item5"
+    }
+}
