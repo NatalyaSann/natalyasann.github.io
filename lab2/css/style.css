@@ -8,9 +8,19 @@
     color: mediumvioletred;
 }
 
+.img-0 {
+    background-image: url(../media/cosm0.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: lightpink;
+    color: mediumvioletred;
+}
+
 .h-divider{
     margin-top:5px;
-    margin-bottom:5px;
+    margin-bottom:10px;
     height:1px;
     width:100%;
     border-top: 2px solid mediumvioletred;
@@ -18,7 +28,7 @@
 
 .h2-divider{
     margin-top:5px;
-    margin-bottom:5px;
+    margin-bottom:10px;
     height:1px;
     width:100%;
     border-top: 2px dotted grey;
