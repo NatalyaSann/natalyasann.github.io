@@ -1,0 +1,25 @@
+.img-1 {
+    background-image: url(../media/cosm.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: lightpink;
+    color: mediumvioletred;
+}
+
+.h-divider{
+    margin-top:5px;
+    margin-bottom:5px;
+    height:1px;
+    width:100%;
+    border-top: 2px solid mediumvioletred;
+}
+
+.h2-divider{
+    margin-top:5px;
+    margin-bottom:5px;
+    height:1px;
+    width:100%;
+    border-top: 2px dotted grey;
+}
