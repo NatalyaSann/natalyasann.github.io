@@ -28,7 +28,7 @@ function pushElem() {
 function getImage(width, height) {
     var img = new Image();
     img.setAttribute('crossOrigin', 'anonymous');
-    img.src = `http://cors-anywhere.herokuapp.com/https://source.unsplash.com/collection/1127163/${width}x${height}`;
+    img.src = `https://source.unsplash.com/collection/1127163/${width}x${height}`;
     return img;
 }
 
