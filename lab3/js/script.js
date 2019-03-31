@@ -1,14 +1,34 @@
-var canvas = document.createElement('canvas');
+var canvas;
 var loaded = [false, false, false,false];
+var context;
 
-canvas.width = 480;
-canvas.height = 320;
-context = canvas.getContext('2d');
-document.body.appendChild(canvas);
+function download() {
+    var canv = document.getElementById('canvasId');
+    this.href = canv.toDataURL('image/jpeg');
+}
+
+function pushElem() {
+    canvas = document.createElement('canvas');
+    canvas.id = 'canvasId';
+    canvas.width = 480;
+    canvas.height = 320;
+    context = canvas.getContext('2d');
+
+    var button = document.createElement('a');
+    button.id = 'downloadId';
+    button.setAttribute('download', 'canvas.jpg');
+    button.hidden = true;
+    button.innerHTML = 'DOWNLOAD';
+    document.body.appendChild(canvas);
+    document.body.appendChild(button);
+    document.getElementById('downloadId').addEventListener('click', download, false);
+}
+
 
 function getImage(width, height) {
     var img = new Image();
-    img.src = `https://source.unsplash.com/collection/1127163/${width}x${height}`;
+    img.setAttribute('crossOrigin', 'anonymous');
+    img.src = `http://cors-anywhere.herokuapp.com/https://source.unsplash.com/collection/1127163/${width}x${height}`;
     return img;
 }
 
@@ -81,6 +101,8 @@ function fillText(marginLeft, marginRight, marginTop, marginBottom, lineHeight) 
             context.textBaseline = 'middle';
             drawText(JSON.parse(xhr.response)['quoteText'], marginLeft, marginRight, marginTop, marginBottom, lineHeight);
         }
+        var button = document.getElementById('downloadId');
+        button.hidden = false;
     };
     xhr.send();
 }
@@ -112,4 +134,10 @@ function fillCanvas(x, y) {
     };
 }
 
-fillCanvas(200, 100);
+pushElem();
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+fillCanvas(getRandomInt(canvas.width/3, canvas.width /3 * 2), getRandomInt(canvas.height/3, canvas.height/ 3 * 2));
