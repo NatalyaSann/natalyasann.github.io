@@ -88,7 +88,7 @@ function fillText(marginLeft, marginRight, marginTop, marginBottom, lineHeight) 
         return;
     }
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=ru', true);
+    xhr.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=ru', true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState !== 4) {
             return;
