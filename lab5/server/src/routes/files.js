@@ -15,7 +15,7 @@ router.post('/files', (req, res) => {
         } else {
             res.send({
                 success: true,
-                message: `Post with ID_${data._id} saved successfully!`
+                message: `File with ID_${data._id} saved successfully!`
             });
         }
     });

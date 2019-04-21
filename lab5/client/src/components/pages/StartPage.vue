@@ -2,7 +2,9 @@
 <template>
   <div>
     <h1>Documents</h1>
-    <button type="button" class="btn btn-dark">Create new file</button>
+    <router-link tag="div" :to="{ name: 'NewFile' }">
+      <a class="btn btn-dark" role="button">Create new file</a>
+    </router-link>
     <table class="table table-bordered">
       <thead>
       <tr class="bg-light text-black-50">
@@ -18,7 +20,7 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService'
+import FilesService from '@/services/FilesService'
 export default {
   name: 'PostsPage',
   data () {
@@ -28,7 +30,7 @@ export default {
   },
   methods: {
     async getPosts () {
-      const response = await PostsService.fetchPosts()
+      const response = await FilesService.fetchPosts()
       this.posts = response.data.posts
     }
   },
