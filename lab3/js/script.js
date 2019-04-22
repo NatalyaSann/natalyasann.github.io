@@ -2,11 +2,13 @@ var canvas;
 var loaded = [false, false, false,false];
 var context;
 
+// скачать
 function download() {
     var canv = document.getElementById('canvasId');
     this.href = canv.toDataURL('image/jpeg');
 }
 
+// добавить элементы в body
 function pushElem() {
     canvas = document.createElement('canvas');
     canvas.id = 'canvasId';
@@ -24,7 +26,7 @@ function pushElem() {
     document.getElementById('downloadId').addEventListener('click', download, false);
 }
 
-
+// получить картинку с заданным размером
 function getImage(width, height) {
     var img = new Image();
     img.setAttribute('crossOrigin', 'anonymous');
@@ -32,6 +34,7 @@ function getImage(width, height) {
     return img;
 }
 
+// проверка что все картинки закачаны
 function isLoaded(arr) {
     return !arr.some(el => {
         return !el;
@@ -39,6 +42,7 @@ function isLoaded(arr) {
 
 }
 
+// разбиение на строки
 function linesForCanvas (text, maxWidth) {
     var words = text.split(' ');
     var lines = [];
@@ -63,11 +67,14 @@ function linesForCanvas (text, maxWidth) {
 }
 
 function drawText (text, marginLeft, marginRight, marginTop, marginBottom, lineHeight) {
+    // определяем максимальную ширину для отображения текста
     var maxWidth = canvas.width - marginLeft - marginRight;
     var maxHeight = canvas.height - marginTop - marginBottom;
 
+    // определяем центр
     var centerXCanvas = canvas.width / 2;
 
+    // вызов другой ф-ии, которая разобьет текст на строки
     var lines = linesForCanvas(text, maxWidth);
     var listHeight = lines.length * lineHeight;
 
@@ -75,6 +82,7 @@ function drawText (text, marginLeft, marginRight, marginTop, marginBottom, lineH
         return;
     }
 
+    // изменяем верхний отступ
     marginTop = marginTop + (maxHeight - listHeight) / 2;
 
     lines.forEach(function (value){
@@ -83,6 +91,7 @@ function drawText (text, marginLeft, marginRight, marginTop, marginBottom, lineH
     });
 }
 
+// рисуем текст
 function fillText(marginLeft, marginRight, marginTop, marginBottom, lineHeight) {
     if (!isLoaded(loaded)) {
         return;
@@ -99,19 +108,23 @@ function fillText(marginLeft, marginRight, marginTop, marginBottom, lineHeight) 
             context.fillStyle = 'white';
             context.textAlign = 'center';
             context.textBaseline = 'middle';
+            // след-я ф-я
             drawText(JSON.parse(xhr.response)['quoteText'], marginLeft, marginRight, marginTop, marginBottom, lineHeight);
         }
+        // показываем кнопку
         var button = document.getElementById('downloadId');
         button.hidden = false;
     };
     xhr.send();
 }
 
+// заполняем картинками - если все подгрузились, рисуем текст
 function fillCanvas(x, y) {
     var img1 = getImage(x, y);
     img1.onload = function () {
         context.drawImage(img1, 0, 0, x, y);
         loaded[0] = true;
+        // след-я ф-я
         fillText(20, 20, 10, 10, 30);
     };
     var img2 = getImage(canvas.width - x, y);
@@ -140,4 +153,5 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-fillCanvas(getRandomInt(canvas.width/3, canvas.width /3 * 2), getRandomInt(canvas.height/3, canvas.height/ 3 * 2));
+// заполнить канвас - в параметрах рандомная точка
+fillCanvas(getRandomInt(canvas.width/3, canvas.width / 3 * 2), getRandomInt(canvas.height/3, canvas.height/ 3 * 2));
