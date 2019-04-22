@@ -18,7 +18,7 @@
         <th scope="row" class="align-middle">{{index}}</th>
         <td class="col-md-2 align-middle">{{file.title}}</td>
         <td class="col-md-1 align-middle">
-          <router-link :to="{ name: 'EditFile', params: { id: file._id } }"><button class="btn btn-warning">Change</button></router-link>
+          <router-link :to="{ name: 'EditFile', params: { id: file._id } }"><button class="btn btn-dark">Change</button></router-link>
           <button class="btn btn-danger mt-2" @click="removeFile(file._id)">Delete</button>
         </td>
       </tr>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import FilesService from '@/services/FilesService'
+import FilesService from '../../services/FilesService'
 export default {
   name: 'StartPage',
   data () {
@@ -43,6 +43,11 @@ export default {
     async getFiles () {
       const response = await FilesService.fetchFiles()
       this.files = response.data.files
+    },
+
+    async removeFile (id) {
+      await FilesService.deleteFile(id)
+      this.getFiles()
     }
   },
   mounted () {

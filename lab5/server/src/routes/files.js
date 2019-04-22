@@ -30,3 +30,46 @@ router.get('/files', (req, res) => {
         }
     }).sort({ _id: -1 })
 });
+
+router.get('/files/:id', (req, res) => {
+    File.findById(req.params.id, 'title description', (err, file) => {
+        if (err) {
+            res.sendStatus(500);
+        } else {
+            res.send(file);
+        }
+    });
+});
+
+router.put('/files/:id', (req, res) => {
+    File.findById(req.params.id, 'title description', (err, file) => {
+        if (err) {
+            console.log(err);
+        } else {
+            if (req.body.title) {
+                file.title = req.body.title;
+            }
+            if (req.body.description) {
+                file.description = req.body.description;
+            }
+            file.save(err => {
+                if (err) {
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            });
+        }
+    });
+});
+
+router.delete('/files/:id', (req, res) => {
+    File.remove({ _id: req.params.id }, err => {
+        if (err) {
+            res.sendStatus(500)
+        } else {
+            res.sendStatus(200)
+        }
+    });
+});
+module.exports = router;

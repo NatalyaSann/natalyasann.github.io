@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
 
-app.set(require('./routes/files'));
+app.use(require('./routes/files'));
 
 mongoose.connect(config.dbURL, config.dbOptions);
 mongoose.connection

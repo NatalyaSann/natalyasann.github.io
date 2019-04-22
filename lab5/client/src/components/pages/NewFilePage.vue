@@ -22,7 +22,7 @@
       </div>
       <div class="row">
         <div class="col-6">
-          <textarea class="form-control border-dark" rows="23" v-model="file.description" required></textarea>
+          <textarea class="form-control border-dark" rows="15" v-model="file.description" required></textarea>
           <div class="valid-feedback">
             Everythin's ok
           </div>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import FilesService from '@/services/FilesService'
+import FilesService from '../../services/FilesService'
 const marked = require('marked')
 
 export default {
