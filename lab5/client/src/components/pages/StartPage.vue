@@ -13,29 +13,40 @@
         <th scope="col">action</th>
       </tr>
       </thead>
-
+      <tbody>
+      <tr v-if="files.length" v-for="(file, index) in files" :key="file.id">
+        <th scope="row" class="align-middle">{{index}}</th>
+        <td class="col-md-2 align-middle">{{file.title}}</td>
+        <td class="col-md-1 align-middle">
+          <router-link :to="{ name: 'EditFile', params: { id: file._id } }"><button class="btn btn-warning">Change</button></router-link>
+          <button class="btn btn-danger mt-2" @click="removeFile(file._id)">Delete</button>
+        </td>
+      </tr>
+      <tr v-if="!files.length">
+        <td class="align-middle text-center" colspan="4">There is no files yet</td>
+      </tr>
+      </tbody>
     </table>
   </div>
-
 </template>
 
 <script>
 import FilesService from '@/services/FilesService'
 export default {
-  name: 'PostsPage',
+  name: 'StartPage',
   data () {
     return {
-      posts: []
+      files: []
     }
   },
   methods: {
-    async getPosts () {
-      const response = await FilesService.fetchPosts()
-      this.posts = response.data.posts
+    async getFiles () {
+      const response = await FilesService.fetchFiles()
+      this.files = response.data.files
     }
   },
   mounted () {
-    this.getPosts()
+    this.getFiles()
   }
 }
 </script>

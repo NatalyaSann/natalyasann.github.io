@@ -1,7 +1,7 @@
 import api from '@/services/api'
 
 export default {
-  fetchPosts () {
+  fetchFiles () {
     return api().get('files')
   },
   addNewFile (params) {

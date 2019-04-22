@@ -8,9 +8,11 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 app.use(morgan('combined'));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded());
 app.use(cors());
-app.use(require('./routes/files'));
+
+app.set(require('./routes/files'));
 
 mongoose.connect(config.dbURL, config.dbOptions);
 mongoose.connection

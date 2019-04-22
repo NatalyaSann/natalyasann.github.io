@@ -93,5 +93,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  textarea{
+    height: auto;
+  }
+  .scroll {
+    max-height: 374px;
+    overflow-y: auto;
+  }
+  html {
+    height:100%;
+  }
 </style>
